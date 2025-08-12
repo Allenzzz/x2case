@@ -28,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.11"
 
       # 安装 build
       - name: Install pypa/build
@@ -53,7 +53,7 @@ jobs:
   publish-to-pypi:
     # 上传到 PPyPIypi
     name: >-
-      Publish Python 🐍 distribution 📦 to PyPI
+      Publish Python  distribution to PyPI
     if: startsWith(github.ref, 'refs/tags/') # 只在推送tag时，才发布到 PyPI
     needs:
       - build
