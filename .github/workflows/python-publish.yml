@@ -1,70 +1,77 @@
-# This workflow will upload a Python Package to PyPI when a release is created
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Upload Python Package
+name: Publish Python 🐍 distribution 📦 to PyPI
 
 on:
-  release:
-    types: [published]
+  # 手动触发
+  workflow_dispatch:
 
-permissions:
-  contents: read
+  # 推送 tag 是 v*.*.*时触发
+  push:
+    tags:
+      - "v*.*.*"
+
+  # 以下是推送到 main 分支时触发
+  # push:
+  #   branches:
+  #     - 'main'
 
 jobs:
-  release-build:
+  build:
+    # 打包
+    name: Build distribution 📦
     runs-on: ubuntu-latest
 
     steps:
+      # clone 仓库
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      # 设置 Python环境和版本
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.x"
 
-      - name: Build release distributions
-        run: |
-          # NOTE: put your own distribution build steps here.
-          python -m pip install build
-          python -m build
+      # 安装 build
+      - name: Install pypa/build
+        run: >-
+          python3 -m
+          pip install
+          build
+          --user
 
-      - name: Upload distributions
-        uses: actions/upload-artifact@v4
+      # 打包你的项目
+      - name: Build a binary wheel and a source tarball
+        run: python3 -m build
+
+      # 将打包得到的文件上传到 artifact
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v3
         with:
-          name: release-dists
+          name: python-package-distributions
           path: dist/
+          retention-days: 1 # 1 天后删除 artifact
 
-  pypi-publish:
-    runs-on: ubuntu-latest
+  publish-to-pypi:
+    # 上传到 PPyPIypi
+    name: >-
+      Publish Python 🐍 distribution 📦 to PyPI
+    if: startsWith(github.ref, 'refs/tags/') # 只在推送tag时，才发布到 PyPI
     needs:
-      - release-build
-    permissions:
-      # IMPORTANT: this permission is mandatory for trusted publishing
-      id-token: write
-
-    # Dedicated environments with protections for publishing are strongly recommended.
-    # For more information, see: https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules
+      - build
+    runs-on: ubuntu-latest
     environment:
       name: pypi
-      # OPTIONAL: uncomment and update to include your PyPI project URL in the deployment status:
-      # url: https://pypi.org/p/YOURPROJECT
-      #
-      # ALTERNATIVE: if your GitHub Release name is the PyPI project version string
-      # ALTERNATIVE: exactly, uncomment the following line instead:
-      # url: https://pypi.org/project/YOURPROJECT/${{ github.event.release.name }}
+      url: https://pypi.org/p/x2case
+    permissions:
+      id-token: write # IMPORTANT: mandatory for trusted publishing
 
     steps:
-      - name: Retrieve release distributions
-        uses: actions/download-artifact@v4
+      # 从 artifact 下载打包的文件
+      - name: Download all the dists
+        uses: actions/download-artifact@v3
         with:
-          name: release-dists
+          name: python-package-distributions
           path: dist/
 
-      - name: Publish release distributions to PyPI
+      #  通过 pypa/gh-action-pypi-publish 这个 action 发布到 PyPI
+      - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: dist/
