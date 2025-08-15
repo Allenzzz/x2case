@@ -16,21 +16,21 @@ config = {'sep': ' ',
 def xmind2suite(xmind_content_dict):
     """convert xmind file to `x2case.metadata.TestSuite` list"""
     suites = []
+    sheet = xmind_content_dict[0]
 
-    for sheet in xmind_content_dict:
-        logging.debug('start to parse a sheet: %s', sheet['title'])
-        root_topic = sheet['rootTopic']  # for zen rootTopic
-        sub_topics = root_topic.get('children', [])
+    # for sheet in xmind_content_dict:
+    logging.debug('start to parse a sheet: %s', sheet['title'])
+    root_topic = sheet['rootTopic']  # for zen rootTopic
+    sub_topics = root_topic.get('children', [])
 
-        if sub_topics:
-            root_topic['topics'] = filter_content_children(sub_topics)
-        else:
-            logging.warning('This is a blank sheet(%s), should have at least 1 sub topic(test suite)', sheet['title'])
-            continue
-        suite = sheet2suite(root_topic)
-        # suite.sheet_name = sheet['title']  # root testsuite has a sheet_name attribute
-        logging.debug('sheet(%s) parsing complete: %s', sheet['title'], suite.to_dict())
-        suites.append(suite)
+    if sub_topics:
+        root_topic['topics'] = filter_content_children(sub_topics)
+    else:
+        logging.warning('This is a blank sheet(%s), should have at least 1 sub topic(test suite)', sheet['title'])
+    suite = sheet2suite(root_topic)
+    # suite.sheet_name = sheet['title']  # root testsuite has a sheet_name attribute
+    logging.debug('sheet(%s) parsing complete: %s', sheet['title'], suite.to_dict())
+    suites.append(suite)
 
     return suites
 
