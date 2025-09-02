@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
-
+import copy
 import logging
 
 from x2case.metadata import TestSuite, TestCase, TestStep
@@ -12,25 +12,28 @@ config = {'sep': ' ',
           'ignore_char': '#!！'
           }
 
+case_id_counter = 1
+
 
 def xmind2suite(xmind_content_dict):
     """convert xmind file to `x2case.metadata.TestSuite` list"""
+    global case_id_counter
+    case_id_counter = 1
     suites = []
-    sheet = xmind_content_dict[0]
 
-    # for sheet in xmind_content_dict:
-    logging.debug('start to parse a sheet: %s', sheet['title'])
-    root_topic = sheet['rootTopic']  # for zen rootTopic
-    sub_topics = root_topic.get('children', [])
+    for sheet in xmind_content_dict:
+        logging.debug(f'start to parse a sheet: {sheet["title"]}')
+        root_topic = sheet['rootTopic']  # for zen rootTopic
+        sub_topics = root_topic.get('children', [])
 
-    if sub_topics:
-        root_topic['topics'] = filter_content_children(sub_topics)
-    else:
-        logging.warning('This is a blank sheet(%s), should have at least 1 sub topic(test suite)', sheet['title'])
-    suite = sheet2suite(root_topic)
-    # suite.sheet_name = sheet['title']  # root testsuite has a sheet_name attribute
-    logging.debug('sheet(%s) parsing complete: %s', sheet['title'], suite.to_dict())
-    suites.append(suite)
+        if sub_topics:
+            root_topic['topics'] = filter_content_children(sub_topics)
+        else:
+            logging.warning(f'This is a blank sheet({sheet["title"]}), should have at least 1 sub topic(test suite)')
+        suite = sheet2suite(root_topic)
+        suite.sheet_name = sheet['title']  # root testsuite has a sheet_name attribute
+        logging.debug(f'sheet({sheet["title"]}) parsing complete: {suite.to_dict()}')
+        suites.append(suite)
 
     return suites
 
@@ -101,6 +104,8 @@ def sheet2suite(root_topic):
 
     suite.name = root_title
     suite.details = root_topic.get('notes', '')
+    labels = root_topic.get('labels', [])
+    suite.epic_link = labels[0] if labels else ''
     suite.sub_suites = []
 
     for suite_dict in root_topic['topics']:
@@ -125,9 +130,24 @@ def parse_testsuite(suite_dict):
 
 
 def recurse_parse_testcase(case_dict, parent=None):
+    global case_id_counter
     if is_testcase_topic(case_dict):
         case = parse_a_testcase(case_dict, parent)
-        yield case
+        case_id = "{:04d}".format(case_id_counter)
+        case_id_counter += 1
+
+        if not case.steps:
+            case.case_id = case_id
+            case.steps = [TestStep(step_number=1, actions=' ', expected_results=' ')]
+            yield case
+        else:
+            for step in case.steps:
+                split_case = copy.deepcopy(case)
+                split_case.case_id = case_id
+                split_case.steps = [step]
+                split_case.result = step.result
+
+                yield split_case
     else:
         if not parent:
             parent = []

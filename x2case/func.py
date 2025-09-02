@@ -33,16 +33,28 @@ class XmindZenParser:
         :return: a list of testsuite data
         """
 
-        logging.info('Start converting XMind file(%s) to testsuite data list...', self.xmind_file)
+        logging.info(f'Start converting XMind file{self.xmind_file} to testsuite data list...')
         testsuite_list = self.get_suite_json()
         suite_data_list = []
 
         for testsuite in testsuite_list:
-            product_statistics = {'case_num': 0, 'non_execution': 0, 'pass': 0, 'failed': 0, 'blocked': 0, 'skipped': 0}
+            product_statistics = {
+                'case_num': 0,
+                'non_execution': 0,
+                'pass': 0,
+                'failed': 0,
+                'blocked': 0,
+                'skipped': 0
+            }
             for sub_suite in testsuite.sub_suites:
-                suite_statistics = {'case_num': len(sub_suite.testcase_list), 'non_execution': 0, 'pass': 0,
-                                    'failed': 0,
-                                    'blocked': 0, 'skipped': 0}
+                suite_statistics = {
+                    'case_num': len(sub_suite.testcase_list),
+                    'non_execution': 0,
+                    'pass': 0,
+                    'failed': 0,
+                    'blocked': 0,
+                    'skipped': 0
+                }
                 for case in sub_suite.testcase_list:
                     if case.result == 0:
                         suite_statistics['non_execution'] += 1
@@ -55,8 +67,8 @@ class XmindZenParser:
                     elif case.result == 4:
                         suite_statistics['skipped'] += 1
                     else:
-                        logging.warning('This testcase result is abnormal: %s, please check it: %s', case.result,
-                                        case.to_dict())
+                        logging.warning(
+                            f'This testcase result is abnormal: {case.result}, please check it: {case.to_dict()}')
                 sub_suite.statistics = suite_statistics
                 for item in product_statistics:
                     product_statistics[item] += suite_statistics[item]
@@ -79,11 +91,13 @@ class XmindZenParser:
 
         for testsuite in test_suites:
             product = testsuite.name
+            epic_link = testsuite.epic_link
             for suite in testsuite.sub_suites:
                 for case in suite.testcase_list:
                     case_data = case.to_dict()
                     case_data['product'] = product
                     case_data['suite'] = suite.name
+                    case_data['epic_link'] = epic_link
                     testcases.append(case_data)
 
         logging.info(f'Convert XMind file{self.xmind_file} to testcases dict data successfully!')
@@ -92,7 +106,7 @@ class XmindZenParser:
     def xmind_2_suite_json_file(self):
         """Convert XMind file to a testsuite json file"""
 
-        logging.info(f'Start converting XMind file{self.xmind_file} to test_suites json file...', )
+        logging.info(f'Start converting XMind file{self.xmind_file} to test_suites json file...')
         test_suites = self.get_xmind_testsuite_list()
         testsuite_json_file = self.xmind_file[:-6] + '_testsuite.json'
 
@@ -102,8 +116,7 @@ class XmindZenParser:
         with open(testsuite_json_file, 'w', encoding='utf8') as f:
             f.write(json.dumps(test_suites, indent=4, separators=(',', ': '), ensure_ascii=False))
             logging.info(
-                f'Convert XMind file {self.xmind_file} to a testsuite json file {testsuite_json_file} successfully!',
-                testsuite_json_file)
+                f'Convert XMind file {self.xmind_file} to a testsuite json file {testsuite_json_file} successfully!')
 
         return testsuite_json_file
 

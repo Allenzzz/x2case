@@ -10,13 +10,13 @@ logging.basicConfig(level=logging.INFO)
 
 
 def main():
-    xmind_file = 'docs/jira_demo.xmind'
+    xmind_file = 'docs/jira_new_version.xmind'
     print('Start to convert XMind file: %s' % xmind_file)
 
     # 1、testcases import file
     # (1) jira
     csv_file = xmind_to_jira_csv_file(xmind_file)
-    print(f'Convert XMind file to zentao csv file successfully: {xmind_file}')
+    print(f'Convert XMind file {xmind_file} to jira csv file {csv_file} successfully ')
 
     # 2、 testcases json file
     parser = XmindZenParser(xmind_file)

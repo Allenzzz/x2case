@@ -40,17 +40,16 @@ def gen_case_row(testcase_dict):
     case_title = testcase_dict['name']
     case_precondition = testcase_dict['preconditions']
     case_step, case_expected_result = gen_case_step_and_expected_result(testcase_dict['steps'])
-    case_keyword = ''
+    # case_keyword = ''
     case_priority = gen_case_priority(testcase_dict['importance'])
     case_type = gen_case_type(testcase_dict['execution_type'])
-    case_apply_phase = 'SIT'  # default
+    # case_apply_phase = 'SIT'  # default
     application = testcase_dict['product']
-    # row = [case_module, case_title, case_precondition, case_step, case_expected_result, case_keyword, case_priority,
-    #       case_type, case_apply_phase]
+
     row = [
         # ['Test Case Identifier*',
         #  'Issue Key (Update)',
-        '', '',
+        testcase_dict['case_id'], '',
         case_title, case_step,
         '',  # 'Data',
         case_expected_result,
@@ -79,10 +78,11 @@ def gen_case_row(testcase_dict):
         #  'Test Repository',
         #  'Test Plan',
         #  'Test Run',
-        #  'Epic Link',
+        '', '', '', '',  # 4 placeholder
+        testcase_dict.get('epic_link', ''), #  'Epic Link',
         #  'Status',
         #  'Resolution'
-        '', '', '', '', '', '', '',  # 7 placeholder
+        '', '',  # 2 placeholder
     ]
 
     return row
@@ -102,10 +102,17 @@ def gen_case_step_and_expected_result(steps):
     case_expected_result = ''
 
     for step_dict in steps:
-        case_step += str(step_dict['step_number']) + '. ' + step_dict['actions'].replace('\n', '').strip() + '\n'
-        case_expected_result += str(step_dict['step_number']) + '. ' + \
-                                step_dict['expected_results'].replace('\n', '').strip() + '\n' \
-            if step_dict.get('expected_results', '') else ''
+        actions = step_dict.get('actions', '').strip()
+        if actions:
+            case_step += str(step_dict['step_number']) + '. ' + actions.replace('\n', '') + '\n'
+        else:
+            case_step += ' \n'
+
+        expected = step_dict.get('expected_results', '').strip()
+        if expected:
+            case_expected_result += str(step_dict['step_number']) + '. ' + expected.replace('\n', '') + '\n'
+        else:
+            case_expected_result += ' \n'
 
     return case_step, case_expected_result
 

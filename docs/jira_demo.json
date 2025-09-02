@@ -1,5 +1,6 @@
 [
     {
+        "case_id": "0001",
         "name": "验证登录页 - 登录链接",
         "version": 1,
         "summary": "验证登录页 - 登录链接",
@@ -16,7 +17,24 @@
                 "expected_results": "预期结果1",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称",
+        "suite": "UI模块（#55）",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0001",
+        "name": "验证登录页 - 登录链接",
+        "version": 1,
+        "summary": "验证登录页 - 登录链接",
+        "preconditions": "前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）\n----\n前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 2,
                 "actions": "测试步骤2",
@@ -26,9 +44,11 @@
             }
         ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0002",
         "name": "验证登录页 - 登录页面",
         "version": 1,
         "summary": "验证登录页 - 登录页面",
@@ -48,9 +68,11 @@
             }
         ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0003",
         "name": "验证登录页 - 控件 - 用户名输入",
         "version": 1,
         "summary": "验证登录页 - 控件 - 用户名输入",
@@ -70,9 +92,11 @@
             }
         ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0004",
         "name": "验证登录页 - 控件 - 密码输入",
         "version": 1,
         "summary": "验证登录页 - 控件 - 密码输入",
@@ -92,9 +116,11 @@
             }
         ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0005",
         "name": "验证登录页 - 控件 - 登录按钮",
         "version": 1,
         "summary": "验证登录页 - 控件 - 登录按钮",
@@ -104,11 +130,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0006",
         "name": "验证登录页 - 国际化 - 中文环境",
         "version": 1,
         "summary": "验证登录页 - 国际化 - 中文环境",
@@ -118,11 +154,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0007",
         "name": "验证登录页 - 国际化 - 英文环境",
         "version": 1,
         "summary": "验证登录页 - 国际化 - 英文环境",
@@ -132,11 +178,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0008",
         "name": "验证登录页 - 操作 - 有效的用户名+有效的密码",
         "version": 1,
         "summary": "验证登录页 - 操作 - 有效的用户名+有效的密码",
@@ -153,14 +209,48 @@
                 "expected_results": "",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称",
+        "suite": "UI模块（#55）",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0008",
+        "name": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+        "version": 1,
+        "summary": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+        "preconditions": "前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）",
+        "execution_type": 2,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 2,
                 "actions": "测试步骤2",
                 "expected_results": "预期结果",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称",
+        "suite": "UI模块（#55）",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0008",
+        "name": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+        "version": 1,
+        "summary": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+        "preconditions": "前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）",
+        "execution_type": 2,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 3,
                 "actions": "测试步骤3（可以只有测试步骤，没有预期结果）",
@@ -170,9 +260,11 @@
             }
         ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0009",
         "name": "验证登录页 - 操作 - 有效的用户名+无效的密码",
         "version": 1,
         "summary": "验证登录页 - 操作 - 有效的用户名+无效的密码",
@@ -182,11 +274,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0010",
         "name": "验证登录页 - 操作 - 无效的用户名+无效的密码",
         "version": 1,
         "summary": "验证登录页 - 操作 - 无效的用户名+无效的密码",
@@ -196,11 +298,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0011",
         "name": "验证个人主页",
         "version": 1,
         "summary": "验证个人主页",
@@ -210,11 +322,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "UI模块（#55）"
+        "suite": "UI模块（#55）",
+        "epic_link": ""
     },
     {
+        "case_id": "0012",
         "name": "用户表 - Data",
         "version": 1,
         "summary": "用户表 - Data",
@@ -224,11 +346,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "数据库模块（#56）"
+        "suite": "数据库模块（#56）",
+        "epic_link": ""
     },
     {
+        "case_id": "0013",
         "name": "用户表 - Schema",
         "version": 1,
         "summary": "用户表 - Schema",
@@ -238,11 +370,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称",
-        "suite": "数据库模块（#56）"
+        "suite": "数据库模块（#56）",
+        "epic_link": ""
     },
     {
+        "case_id": "0014",
         "name": "测试用例1",
         "version": 1,
         "summary": "测试用例1",
@@ -259,7 +401,24 @@
                 "expected_results": "预期结果1",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称2",
+        "suite": "A模块名(#57)",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0014",
+        "name": "测试用例1",
+        "version": 1,
+        "summary": "测试用例1",
+        "preconditions": "前置条件",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 2,
                 "actions": "测试步骤2",
@@ -269,9 +428,11 @@
             }
         ],
         "product": "产品名称2",
-        "suite": "A模块名(#57)"
+        "suite": "A模块名(#57)",
+        "epic_link": ""
     },
     {
+        "case_id": "0015",
         "name": "测试用例2",
         "version": 1,
         "summary": "测试用例2",
@@ -288,21 +449,72 @@
                 "expected_results": "预期结果1",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称2",
+        "suite": "A模块名(#57)",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0015",
+        "name": "测试用例2",
+        "version": 1,
+        "summary": "测试用例2",
+        "preconditions": "前置条件",
+        "execution_type": 2,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 2,
                 "actions": "测试步骤2（预期结果2可以为空）",
                 "expected_results": "",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称2",
+        "suite": "A模块名(#57)",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0015",
+        "name": "测试用例2",
+        "version": 1,
+        "summary": "测试用例2",
+        "preconditions": "前置条件",
+        "execution_type": 2,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 3,
                 "actions": "测试步骤3",
                 "expected_results": "预期结果3",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称2",
+        "suite": "A模块名(#57)",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0015",
+        "name": "测试用例2",
+        "version": 1,
+        "summary": "测试用例2",
+        "preconditions": "前置条件",
+        "execution_type": 2,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 4,
                 "actions": "测试步骤4",
@@ -312,9 +524,11 @@
             }
         ],
         "product": "产品名称2",
-        "suite": "A模块名(#57)"
+        "suite": "A模块名(#57)",
+        "epic_link": ""
     },
     {
+        "case_id": "0016",
         "name": "测试用例3（测试步骤和预期结果可以都为空）",
         "version": 1,
         "summary": "测试用例3（测试步骤和预期结果可以都为空）",
@@ -324,11 +538,21 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称2",
-        "suite": "A模块名(#57)"
+        "suite": "A模块名(#57)",
+        "epic_link": ""
     },
     {
+        "case_id": "0017",
         "name": "测试步骤2（优先级默认为中）",
         "version": 1,
         "summary": "测试步骤2（优先级默认为中）",
@@ -345,7 +569,24 @@
                 "expected_results": "预期结果1",
                 "execution_type": 1,
                 "result": 0
-            },
+            }
+        ],
+        "product": "产品名称2",
+        "suite": "B模块名(#58)",
+        "epic_link": ""
+    },
+    {
+        "case_id": "0017",
+        "name": "测试步骤2（优先级默认为中）",
+        "version": 1,
+        "summary": "测试步骤2（优先级默认为中）",
+        "preconditions": "无",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "result": 0,
+        "steps": [
             {
                 "step_number": 2,
                 "actions": "测试步骤3",
@@ -355,9 +596,11 @@
             }
         ],
         "product": "产品名称2",
-        "suite": "B模块名(#58)"
+        "suite": "B模块名(#58)",
+        "epic_link": ""
     },
     {
+        "case_id": "0018",
         "name": "测试用例3（前置条件默认为空） > 无设置优先级，这里加入用例标题",
         "version": 1,
         "summary": "测试用例3（前置条件默认为空） > 无设置优先级，这里加入用例标题",
@@ -367,8 +610,17 @@
         "estimated_exec_duration": 3,
         "status": 7,
         "result": 0,
-        "steps": [],
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": " ",
+                "expected_results": " ",
+                "execution_type": 1,
+                "result": 0
+            }
+        ],
         "product": "产品名称2",
-        "suite": "B模块名(#58)"
+        "suite": "B模块名(#58)",
+        "epic_link": ""
     }
 ]

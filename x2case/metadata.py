@@ -11,25 +11,29 @@ class TestSuite(object):
                  details='',
                  testcase_list=None,
                  sub_suites=None,
-                 statistics=None):
+                 statistics=None,
+                 epic_link=''):
         """
         TestSuite
         :param name: test suite name
-        :param details: test suite detail infomation
+        :param details: test suite detail information
         :param testcase_list: test case list
-        :param sub_suites: sub test suite list
+        :param sub_suites: subtest suite list
         :param statistics: testsuite statistics info {'case_num': 0, 'non_execution': 0, 'pass': 0, 'failed': 0, 'blocked': 0, 'skipped': 0}
+        :param epic_link: epic link for jira
         """
         self.name = name
         self.details = details
         self.testcase_list = testcase_list
         self.sub_suites = sub_suites
         self.statistics = statistics
+        self.epic_link = epic_link
 
     def to_dict(self):
         data = {
             'name': self.name,
             'details': self.details,
+            'epic_link': self.epic_link,
             'testcase_list': [],
             'sub_suites': []
         }
@@ -58,7 +62,7 @@ class TestCase(object):
                  importance=2,
                  estimated_exec_duration=3,
                  status=7, result=0,
-                 steps=None):
+                 steps=None, case_id=None):
         """
         TestCase
         :param name: test case name
@@ -71,6 +75,7 @@ class TestCase(object):
         :param status: draft:1, ready ro review:2, review in progress:3, rework:4, obsolete:5, future:6, final:7
         :param result: non-execution:0, pass:1, failed:2, blocked:3, skipped:4
         :param steps: test case step list
+        :param case_id: test case id
         """
         self.name = name
         self.version = version
@@ -82,17 +87,19 @@ class TestCase(object):
         self.status = status
         self.result = result
         self.steps = steps
+        self.case_id = case_id
 
     def to_dict(self):
         data = {
+            'case_id': self.case_id,
             'name': self.name,
-            'version': self.version,  # TODO(devin): get version content
+            'version': self.version,
             'summary': self.summary,
             'preconditions': self.preconditions,
             'execution_type': self.execution_type,
             'importance': self.importance,
-            'estimated_exec_duration': self.estimated_exec_duration,  # TODO(devin): get estimated content
-            'status': self.status,  # TODO(devin): get status content
+            'estimated_exec_duration': self.estimated_exec_duration,
+            'status': self.status,
             'result': self.result,
             'steps': []
         }
@@ -122,7 +129,7 @@ class TestStep(object):
         self.step_number = step_number
         self.actions = actions
         self.expected_results = expected_results
-        self.execution_type = execution_type  # TODO(devin): get execution type content
+        self.execution_type = execution_type
         self.result = result
 
     def to_dict(self):

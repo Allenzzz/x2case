@@ -2,6 +2,7 @@
     {
         "name": "产品名称",
         "details": "",
+        "epic_link": "",
         "testcase_list": [],
         "sub_suites": [
             {
@@ -11,8 +12,10 @@
                         "content": "测试集摘要：测试集的备注会转换为测试集的摘要/详情（默认为空）"
                     }
                 },
+                "epic_link": "",
                 "testcase_list": [
                     {
+                        "case_id": "0001",
                         "name": "验证登录页 - 登录链接",
                         "version": 1,
                         "summary": "验证登录页 - 登录链接",
@@ -29,7 +32,21 @@
                                 "expected_results": "预期结果1",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0001",
+                        "name": "验证登录页 - 登录链接",
+                        "version": 1,
+                        "summary": "验证登录页 - 登录链接",
+                        "preconditions": "前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）\n----\n前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）",
+                        "execution_type": 1,
+                        "importance": 2,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 2,
                                 "actions": "测试步骤2",
@@ -40,6 +57,7 @@
                         ]
                     },
                     {
+                        "case_id": "0002",
                         "name": "验证登录页 - 登录页面",
                         "version": 1,
                         "summary": "验证登录页 - 登录页面",
@@ -60,6 +78,7 @@
                         ]
                     },
                     {
+                        "case_id": "0003",
                         "name": "验证登录页 - 控件 - 用户名输入",
                         "version": 1,
                         "summary": "验证登录页 - 控件 - 用户名输入",
@@ -80,6 +99,7 @@
                         ]
                     },
                     {
+                        "case_id": "0004",
                         "name": "验证登录页 - 控件 - 密码输入",
                         "version": 1,
                         "summary": "验证登录页 - 控件 - 密码输入",
@@ -100,6 +120,7 @@
                         ]
                     },
                     {
+                        "case_id": "0005",
                         "name": "验证登录页 - 控件 - 登录按钮",
                         "version": 1,
                         "summary": "验证登录页 - 控件 - 登录按钮",
@@ -109,9 +130,18 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     },
                     {
+                        "case_id": "0006",
                         "name": "验证登录页 - 国际化 - 中文环境",
                         "version": 1,
                         "summary": "验证登录页 - 国际化 - 中文环境",
@@ -121,9 +151,18 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     },
                     {
+                        "case_id": "0007",
                         "name": "验证登录页 - 国际化 - 英文环境",
                         "version": 1,
                         "summary": "验证登录页 - 国际化 - 英文环境",
@@ -133,9 +172,18 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     },
                     {
+                        "case_id": "0008",
                         "name": "验证登录页 - 操作 - 有效的用户名+有效的密码",
                         "version": 1,
                         "summary": "验证登录页 - 操作 - 有效的用户名+有效的密码",
@@ -152,14 +200,42 @@
                                 "expected_results": "",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0008",
+                        "name": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+                        "version": 1,
+                        "summary": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+                        "preconditions": "前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）",
+                        "execution_type": 2,
+                        "importance": 1,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 2,
                                 "actions": "测试步骤2",
                                 "expected_results": "预期结果",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0008",
+                        "name": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+                        "version": 1,
+                        "summary": "验证登录页 - 操作 - 有效的用户名+有效的密码",
+                        "preconditions": "前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）",
+                        "execution_type": 2,
+                        "importance": 1,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 3,
                                 "actions": "测试步骤3（可以只有测试步骤，没有预期结果）",
@@ -170,6 +246,7 @@
                         ]
                     },
                     {
+                        "case_id": "0009",
                         "name": "验证登录页 - 操作 - 有效的用户名+无效的密码",
                         "version": 1,
                         "summary": "验证登录页 - 操作 - 有效的用户名+无效的密码",
@@ -179,9 +256,18 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     },
                     {
+                        "case_id": "0010",
                         "name": "验证登录页 - 操作 - 无效的用户名+无效的密码",
                         "version": 1,
                         "summary": "验证登录页 - 操作 - 无效的用户名+无效的密码",
@@ -191,9 +277,18 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     },
                     {
+                        "case_id": "0011",
                         "name": "验证个人主页",
                         "version": 1,
                         "summary": "验证个人主页",
@@ -203,13 +298,21 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     }
                 ],
                 "sub_suites": [],
                 "statistics": {
-                    "case_num": 11,
-                    "non_execution": 11,
+                    "case_num": 14,
+                    "non_execution": 14,
                     "pass": 0,
                     "failed": 0,
                     "blocked": 0,
@@ -219,8 +322,10 @@
             {
                 "name": "数据库模块（#56）",
                 "details": "",
+                "epic_link": "",
                 "testcase_list": [
                     {
+                        "case_id": "0012",
                         "name": "用户表 - Data",
                         "version": 1,
                         "summary": "用户表 - Data",
@@ -230,9 +335,18 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     },
                     {
+                        "case_id": "0013",
                         "name": "用户表 - Schema",
                         "version": 1,
                         "summary": "用户表 - Schema",
@@ -242,7 +356,15 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     }
                 ],
                 "sub_suites": [],
@@ -257,8 +379,8 @@
             }
         ],
         "statistics": {
-            "case_num": 13,
-            "non_execution": 13,
+            "case_num": 16,
+            "non_execution": 16,
             "pass": 0,
             "failed": 0,
             "blocked": 0,
@@ -268,13 +390,16 @@
     {
         "name": "产品名称2",
         "details": "",
+        "epic_link": "",
         "testcase_list": [],
         "sub_suites": [
             {
                 "name": "A模块名(#57)",
                 "details": "",
+                "epic_link": "",
                 "testcase_list": [
                     {
+                        "case_id": "0014",
                         "name": "测试用例1",
                         "version": 1,
                         "summary": "测试用例1",
@@ -291,7 +416,21 @@
                                 "expected_results": "预期结果1",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0014",
+                        "name": "测试用例1",
+                        "version": 1,
+                        "summary": "测试用例1",
+                        "preconditions": "前置条件",
+                        "execution_type": 1,
+                        "importance": 1,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 2,
                                 "actions": "测试步骤2",
@@ -302,6 +441,7 @@
                         ]
                     },
                     {
+                        "case_id": "0015",
                         "name": "测试用例2",
                         "version": 1,
                         "summary": "测试用例2",
@@ -318,21 +458,63 @@
                                 "expected_results": "预期结果1",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0015",
+                        "name": "测试用例2",
+                        "version": 1,
+                        "summary": "测试用例2",
+                        "preconditions": "前置条件",
+                        "execution_type": 2,
+                        "importance": 1,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 2,
                                 "actions": "测试步骤2（预期结果2可以为空）",
                                 "expected_results": "",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0015",
+                        "name": "测试用例2",
+                        "version": 1,
+                        "summary": "测试用例2",
+                        "preconditions": "前置条件",
+                        "execution_type": 2,
+                        "importance": 1,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 3,
                                 "actions": "测试步骤3",
                                 "expected_results": "预期结果3",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0015",
+                        "name": "测试用例2",
+                        "version": 1,
+                        "summary": "测试用例2",
+                        "preconditions": "前置条件",
+                        "execution_type": 2,
+                        "importance": 1,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 4,
                                 "actions": "测试步骤4",
@@ -343,6 +525,7 @@
                         ]
                     },
                     {
+                        "case_id": "0016",
                         "name": "测试用例3（测试步骤和预期结果可以都为空）",
                         "version": 1,
                         "summary": "测试用例3（测试步骤和预期结果可以都为空）",
@@ -352,13 +535,21 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     }
                 ],
                 "sub_suites": [],
                 "statistics": {
-                    "case_num": 3,
-                    "non_execution": 3,
+                    "case_num": 7,
+                    "non_execution": 7,
                     "pass": 0,
                     "failed": 0,
                     "blocked": 0,
@@ -372,8 +563,10 @@
                         "content": "测试集摘要（详情）"
                     }
                 },
+                "epic_link": "",
                 "testcase_list": [
                     {
+                        "case_id": "0017",
                         "name": "测试步骤2（优先级默认为中）",
                         "version": 1,
                         "summary": "测试步骤2（优先级默认为中）",
@@ -390,7 +583,21 @@
                                 "expected_results": "预期结果1",
                                 "execution_type": 1,
                                 "result": 0
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "case_id": "0017",
+                        "name": "测试步骤2（优先级默认为中）",
+                        "version": 1,
+                        "summary": "测试步骤2（优先级默认为中）",
+                        "preconditions": "无",
+                        "execution_type": 1,
+                        "importance": 1,
+                        "estimated_exec_duration": 3,
+                        "status": 7,
+                        "result": 0,
+                        "steps": [
                             {
                                 "step_number": 2,
                                 "actions": "测试步骤3",
@@ -401,6 +608,7 @@
                         ]
                     },
                     {
+                        "case_id": "0018",
                         "name": "测试用例3（前置条件默认为空） > 无设置优先级，这里加入用例标题",
                         "version": 1,
                         "summary": "测试用例3（前置条件默认为空） > 无设置优先级，这里加入用例标题",
@@ -410,13 +618,21 @@
                         "estimated_exec_duration": 3,
                         "status": 7,
                         "result": 0,
-                        "steps": []
+                        "steps": [
+                            {
+                                "step_number": 1,
+                                "actions": " ",
+                                "expected_results": " ",
+                                "execution_type": 1,
+                                "result": 0
+                            }
+                        ]
                     }
                 ],
                 "sub_suites": [],
                 "statistics": {
-                    "case_num": 2,
-                    "non_execution": 2,
+                    "case_num": 3,
+                    "non_execution": 3,
                     "pass": 0,
                     "failed": 0,
                     "blocked": 0,
@@ -425,8 +641,8 @@
             }
         ],
         "statistics": {
-            "case_num": 5,
-            "non_execution": 5,
+            "case_num": 10,
+            "non_execution": 10,
             "pass": 0,
             "failed": 0,
             "blocked": 0,
