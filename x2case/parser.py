@@ -142,7 +142,7 @@ def recurse_parse_testcase(case_dict, parent=None):
             yield case
         else:
             for step in case.steps:
-                split_case = copy.deepcopy(case)
+                split_case: TestCase = copy.deepcopy(case)
                 split_case.case_id = case_id
                 split_case.steps = [step]
                 split_case.result = step.result
@@ -178,6 +178,7 @@ def parse_a_testcase(case_dict, parent):
     testcase = TestCase()
     topics = parent + [case_dict] if parent else [case_dict]
 
+    # 生成测试用例标题（限制层级避免过度连接）
     testcase.name = gen_testcase_title(topics)
 
     preconditions = gen_testcase_preconditions(topics)
@@ -188,9 +189,14 @@ def parse_a_testcase(case_dict, parent):
     testcase.execution_type = get_execution_type(topics)
     testcase.importance = get_priority(case_dict) or 2
 
+    # 关键修改：处理层级结构映射到测试步骤
     step_dict_list = case_dict.get('topics', [])
     if step_dict_list:
-        testcase.steps = parse_test_steps(step_dict_list)
+        # 如果当前节点有子节点，尝试解析为测试步骤
+        testcase.steps = parse_test_steps_with_hierarchy(step_dict_list, topics)
+    else:
+        # 如果没有子节点，检查是否可以从父级层级中提取步骤信息
+        testcase.steps = extract_steps_from_hierarchy(topics)
 
     # the result of the testcase take precedence over the result of the teststep
     testcase.result = get_test_result(case_dict.get('markers', ''))
@@ -237,14 +243,24 @@ def get_priority(case_dict):
 
 
 def gen_testcase_title(topics):
-    """Link all topic's title as testcase title"""
+    """Generate testcase title from appropriate hierarchy levels"""
     titles = [topic['title'] for topic in topics]
     titles = filter_element(titles)
 
-    # when separator is not blank, will add space around separator, e.g. '/' will be changed to ' / '
+    # 根据层级数量决定怎么生成标题
+    if len(titles) >= 5:
+        # 如果有 5+ 层，前 2 层作为 Summary，第3层作为 Action，第4层作为 Expected
+        titles = titles[:2]
+    elif len(titles) == 4:
+        # 如果有 4 层，前 2 层作为 Summary，第3层作为 Action，第4层作为 Expected
+        titles = titles[:2]
+    else:
+        # 3层及以下，保持原有行为，全部作为 Summary
+        pass  # 保持所有 titles
+    
+    # 使用分隔符连接，不添加额外空格
     separator = config['sep']
-    if separator != ' ':
-        separator = ' {} '.format(separator)
+    # 直接使用分隔符，不在前后添加空格
 
     return separator.join(titles)
 
@@ -259,6 +275,71 @@ def gen_testcase_summary(topics):
     comments = [topic.get('comment', '') for topic in topics]
     comments = filter_element(comments)
     return config['summary_sep'].join(comments)
+
+
+def parse_test_steps_with_hierarchy(step_dict_list, topics):
+    """
+    解析测试步骤，考虑层级结构映射
+    只有当层级数量 >= 4 时才启用新的映射逻辑
+    """
+    steps = []
+    
+    # 只有当 topics 数量 >= 4 时，才使用新的层级映射逻辑
+    if len(topics) >= 4:
+        # 从第3层开始作为 Action
+        action_text = topics[2]['title'] if len(topics) > 2 else ''
+        expected_text = topics[3]['title'] if len(topics) > 3 else ''
+        
+        step = TestStep(
+            step_number=1,
+            actions=action_text,
+            expected_results=expected_text,
+            execution_type=1,
+            result=0
+        )
+        steps.append(step)
+    else:
+        # 使用原有逻辑解析步骤
+        for step_num, step_dict in enumerate(step_dict_list, 1):
+            test_step = parse_a_test_step(step_dict)
+            test_step.step_number = step_num
+            steps.append(test_step)
+    
+    return steps
+
+
+def extract_steps_from_hierarchy(topics):
+    """
+    从层级结构中提取测试步骤信息
+    只有当层级数量 >= 4 时才启用新的映射逻辑
+    """
+    steps = []
+    
+    if len(topics) >= 4:
+        # 第3层作为 Action，第4层作为 Expected Result
+        action_text = topics[2]['title']  # 第3层（索引从0开始）
+        expected_text = topics[3]['title']  # 第4层
+        
+        step = TestStep(
+            step_number=1,
+            actions=action_text,
+            expected_results=expected_text,
+            execution_type=1,
+            result=0
+        )
+        steps.append(step)
+    else:
+        # 对于 3 层及以下，创建默认空步骤（保持原有行为）
+        step = TestStep(
+            step_number=1,
+            actions=' ',
+            expected_results=' ',
+            execution_type=1,
+            result=0
+        )
+        steps.append(step)
+    
+    return steps
 
 
 def parse_test_steps(step_dict_list):

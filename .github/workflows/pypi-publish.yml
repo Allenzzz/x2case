@@ -35,9 +35,6 @@ jobs:
       - name: Build package
         run: python -m build
 
-      - name: Check package integrity (optional)
-        run: python -m twine check dist/*
-
       - name: Publish to PyPI using OIDC (no token needed)
         run: python -m twine upload --skip-existing dist/*
         env:

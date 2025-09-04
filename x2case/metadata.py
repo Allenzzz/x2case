@@ -12,7 +12,8 @@ class TestSuite(object):
                  testcase_list=None,
                  sub_suites=None,
                  statistics=None,
-                 epic_link=''):
+                 epic_link='',
+                 sheet_name=''):
         """
         TestSuite
         :param name: test suite name
@@ -21,6 +22,7 @@ class TestSuite(object):
         :param sub_suites: subtest suite list
         :param statistics: testsuite statistics info {'case_num': 0, 'non_execution': 0, 'pass': 0, 'failed': 0, 'blocked': 0, 'skipped': 0}
         :param epic_link: epic link for jira
+        :param sheet_name: sheet name for the test suite
         """
         self.name = name
         self.details = details
@@ -28,12 +30,14 @@ class TestSuite(object):
         self.sub_suites = sub_suites
         self.statistics = statistics
         self.epic_link = epic_link
+        self.sheet_name = sheet_name
 
     def to_dict(self):
         data = {
             'name': self.name,
             'details': self.details,
             'epic_link': self.epic_link,
+            'sheet_name': self.sheet_name,
             'testcase_list': [],
             'sub_suites': []
         }

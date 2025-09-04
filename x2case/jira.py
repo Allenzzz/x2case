@@ -8,7 +8,7 @@ from x2case import const
 from x2case.func import XmindZenParser
 
 """
-Convert XMind fie to jira testcase csv file
+Convert XMind file to jira testcase csv file
 """
 
 
@@ -102,17 +102,21 @@ def gen_case_step_and_expected_result(steps):
     case_expected_result = ''
 
     for step_dict in steps:
+        step_number = step_dict['step_number']
         actions = step_dict.get('actions', '').strip()
-        if actions:
-            case_step += str(step_dict['step_number']) + '. ' + actions.replace('\n', '') + '\n'
-        else:
-            case_step += ' \n'
-
         expected = step_dict.get('expected_results', '').strip()
-        if expected:
-            case_expected_result += str(step_dict['step_number']) + '. ' + expected.replace('\n', '') + '\n'
+        
+        # 处理空白的 actions
+        if actions and actions != ' ':
+            case_step += str(step_number) + '. ' + actions.replace('\n', '') + '\n'
         else:
-            case_expected_result += ' \n'
+            case_step += ' \n'  # 保持空白字符串
+
+        # 处理空白的 expected_results
+        if expected and expected != ' ':
+            case_expected_result += str(step_number) + '. ' + expected.replace('\n', '') + '\n'
+        else:
+            case_expected_result += ' \n'  # 保持空白字符串
 
     return case_step, case_expected_result
 
@@ -134,6 +138,6 @@ def gen_case_type(case_type):
 
 
 if __name__ == '__main__':
-    xmind_file = '../docs/jira_demo.xmind'
+    xmind_file = 'docs/忘记密码.xmind'
     jira_csv_file = xmind_to_jira_csv_file(xmind_file)
     print(f'Convert the xmind file to a jira csv file successfully{jira_csv_file}')
