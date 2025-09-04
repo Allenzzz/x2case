@@ -13,6 +13,12 @@ on:
     tags:
       - 'v*'  # 匹配以 v 开头的 tag，如 v0.1.0
       - '*'   # 或者匹配所有 tag，如 1.0.0
+  workflow_dispatch:  # 允许手动触发
+    inputs:
+      version:
+        description: 'Version to publish (for logging)'
+        required: false
+        default: 'latest'
 
 jobs:
   deploy:
