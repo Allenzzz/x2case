@@ -4,7 +4,7 @@ import json
 import logging
 import os
 
-from x2case.parser import xmind2suite
+from x2case.parser import Xmind2Case
 from xmindparser import get_xmind_zen_builtin_json
 
 
@@ -13,6 +13,7 @@ class XmindZenParser:
 
     def __init__(self, xmind_file):
         self.xmind_file = xmind_file
+        self.converter = Xmind2Case()
 
     def get_suite_json(self):
         """Load the XMind file and parse to `x2case.metadata.TestSuite` list"""
@@ -22,7 +23,7 @@ class XmindZenParser:
         logging.debug(f"loading XMind file:{self.xmind_file} dict data: {content_json}")
 
         if content_json:
-            test_suites = xmind2suite(content_json)
+            test_suites = self.converter.convert_xmind_to_suites(content_json)
             return test_suites
         else:
             logging.error(f'Invalid XMind file {self.xmind_file}: it is empty!')
@@ -46,32 +47,33 @@ class XmindZenParser:
                 'blocked': 0,
                 'skipped': 0
             }
-            for sub_suite in testsuite.sub_suites:
-                suite_statistics = {
-                    'case_num': len(sub_suite.testcase_list),
-                    'non_execution': 0,
-                    'pass': 0,
-                    'failed': 0,
-                    'blocked': 0,
-                    'skipped': 0
-                }
-                for case in sub_suite.testcase_list:
-                    if case.result == 0:
-                        suite_statistics['non_execution'] += 1
-                    elif case.result == 1:
-                        suite_statistics['pass'] += 1
-                    elif case.result == 2:
-                        suite_statistics['failed'] += 1
-                    elif case.result == 3:
-                        suite_statistics['blocked'] += 1
-                    elif case.result == 4:
-                        suite_statistics['skipped'] += 1
-                    else:
-                        logging.warning(
-                            f'This testcase result is abnormal: {case.result}, please check it: {case.to_dict()}')
-                sub_suite.statistics = suite_statistics
-                for item in product_statistics:
-                    product_statistics[item] += suite_statistics[item]
+            if testsuite.sub_suites:
+                for sub_suite in testsuite.sub_suites:
+                    suite_statistics = {
+                        'case_num': len(sub_suite.testcase_list),
+                        'non_execution': 0,
+                        'pass': 0,
+                        'failed': 0,
+                        'blocked': 0,
+                        'skipped': 0
+                    }
+                    for case in sub_suite.testcase_list:
+                        if case.result == 0:
+                            suite_statistics['non_execution'] += 1
+                        elif case.result == 1:
+                            suite_statistics['pass'] += 1
+                        elif case.result == 2:
+                            suite_statistics['failed'] += 1
+                        elif case.result == 3:
+                            suite_statistics['blocked'] += 1
+                        elif case.result == 4:
+                            suite_statistics['skipped'] += 1
+                        else:
+                            logging.warning(
+                                f'This testcase result is abnormal: {case.result}, please check it: {case.to_dict()}')
+                    sub_suite.statistics = suite_statistics
+                    for item in product_statistics:
+                        product_statistics[item] += suite_statistics[item]
 
             testsuite.statistics = product_statistics
             suite_data = testsuite.to_dict()
@@ -92,13 +94,14 @@ class XmindZenParser:
         for testsuite in test_suites:
             product = testsuite.name
             epic_link = testsuite.epic_link
-            for suite in testsuite.sub_suites:
-                for case in suite.testcase_list:
-                    case_data = case.to_dict()
-                    case_data['product'] = product
-                    case_data['suite'] = suite.name
-                    case_data['epic_link'] = epic_link
-                    testcases.append(case_data)
+            if testsuite.sub_suites:
+                for suite in testsuite.sub_suites:
+                    for case in suite.testcase_list:
+                        case_data = case.to_dict()
+                        case_data['product'] = product
+                        case_data['suite'] = suite.name
+                        case_data['epic_link'] = epic_link
+                        testcases.append(case_data)
 
         logging.info(f'Convert XMind file{self.xmind_file} to testcases dict data successfully!')
         return testcases

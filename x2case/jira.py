@@ -138,6 +138,6 @@ def gen_case_type(case_type):
 
 
 if __name__ == '__main__':
-    xmind_file = 'docs/忘记密码.xmind'
+    xmind_file = 'docs/P-I25-05.xmind'
     jira_csv_file = xmind_to_jira_csv_file(xmind_file)
     print(f'Convert the xmind file to a jira csv file successfully{jira_csv_file}')
