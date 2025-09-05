@@ -4,6 +4,15 @@
 func.py修复后的功能验证测试
 验证修复None值迭代错误后的功能完整性
 """
+import sys
+import os
+from pathlib import Path
+
+# 添加项目根目录到Python路径
+current_dir = Path(__file__).parent
+project_root = current_dir.parent
+sys.path.insert(0, str(project_root))
+
 import logging
 from x2case.com import TestSuite, TestCase, TestStep
 
@@ -203,7 +212,8 @@ class FuncFixVerifier:
                 
                 # 验证测试用例结构
                 case_errors = 0
-                for j, case in enumerate(testsuite.testcase_list, 1):
+                testcase_list = testsuite.testcase_list or []
+                for j, case in enumerate(testcase_list, 1):
                     case_required_attrs = ['case_id', 'name', 'steps', 'importance', 'execution_type']
                     case_missing = []
                     
@@ -239,7 +249,8 @@ class FuncFixVerifier:
                     print(f"    包含 {len(suite_dict['testcase_list'])} 个测试用例")
                     
                     # 测试每个用例的转换
-                    for j, case in enumerate(testsuite.testcase_list, 1):
+                    testcase_list = testsuite.testcase_list or []
+                    for j, case in enumerate(testcase_list, 1):
                         case_dict = case.to_dict()
                         if 'case_id' in case_dict and 'steps' in case_dict:
                             print(f"    ✓ 用例{j} 转换成功")
